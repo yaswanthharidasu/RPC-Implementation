@@ -3,13 +3,6 @@ import json
 FILE_NAME = "rpc_client.py"
 file = open(FILE_NAME, "w")
 
-procedure_names = {
-    "add": '"add"',
-    "mul": '"mul"',
-    "foo": '"foo"',
-    "bar": '"bar"'
-}
-
 def generate_socket():
     socket_code = """import socket
 import json
@@ -40,7 +33,7 @@ def create_socket(message):
 
 def generate_procedure(procedure):
     func_code = "def "+procedure['procedure_name'] + "("
-    data = '\tdata = {\n\t\t"procedure_name": ' + procedure_names[procedure['procedure_name']] +","
+    data = '\tdata = {\n\t\t"procedure_name": "' + procedure['procedure_name'] +'",'
     data += '\n\t\t"parameters": [\n'
     parameters = procedure['parameters']
     for i in range(len(parameters)):
